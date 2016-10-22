@@ -2,9 +2,9 @@
 
 A step by step guide for Neural Networks. This version is still a work in progress.
 
-This directory should include:
-  |
-  |-> BackPropagationNN.pdf     A guide explaining the mathematics behind the code.
+This directory should include:\n
+  |\n
+  |-> BackPropagationNN.pdf     A guide explaining the mathematics behind the code.\n
   |
   |-> BackForwardNN.py          A python implementation of the Neural Network.
   |
