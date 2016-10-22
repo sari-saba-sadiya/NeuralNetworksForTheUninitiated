@@ -5,7 +5,7 @@ A step by step guide for Neural Networks. This version is still a work in progre
 
 
 This directory should include:
-
+    dir
      |  
      |-> BackPropagationNN.pdf     A guide explaining the mathematics behind the code.  
      |  
