@@ -179,7 +179,21 @@ class NeuralNetwork:
                     Ograds.append(dO)
                     Bgrads.append(dB)
             return Wgrads[::-1],Bgrads[::-1]
-    
+
+    def trainNetwork(self,trainX,trainY,learningRate,activation_func_grad,out_func_grad):
+        if len(trainX) != len(trainY):
+            print("ERROR: size mismatch, training data and label should be of the same length")
+            raise NameError('NeuralNetworkError')
+        for t in range(0,len(trainX)):
+            X = convertArray(trainX[t])
+            activations,nets = self.forwordPass(X)
+            Y = convertLabel(trainY[t])
+            Wgrads,Bgrads = self.backwordPass(Y,activations,nets,activation_func_grad,out_func_grad)
+            for k in range(0,len(Wgrads)):
+                for i in range(0,len(Wgrads[k])):
+                    for j in range(0,len(Wgrads[k][i])):
+                        self.layers[k].neuron_array[j].weights[i] = self.layers[k].weight(i,j) -learningRate*Wgrads[k][i][j]
+                        
     def printWeights(self):
         for k in range(len(self.layers)):
             for j in range(len(self.layers[k].neuron_array)):
@@ -285,5 +299,9 @@ for t in range(0,len(allWgrad)):
 scipy.io.savemat("w_gredients.mat", {"w_gradients":w_gradients})
 
 
-
+########################################################
+# Learning using Gradient Decent
+########################################################
+learningRate = 0.001
+nn.trainNetwork(x[0:100],y[0:100],learningRate,sigmoidFunction,sigmoidFunctionGrad)
 
